@@ -8,7 +8,7 @@
           ..bewegt & entspannt
         </p>
         <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-          "Ich brenne für Pilates. Wenn ich sehe, wie körperliche Beschwerden verschwinden, sich die Haltung verbessert und der Körper in Form kommt, bin ich glücklich." <span class="text-sm">Susanne Adler</span>
+          "Ich brenne für Pilates. Wenn ich sehe, wie körperliche Beschwerden verschwinden, sich die Haltung verbessert und der Körper in Form kommt, bin ich glücklich." <span class="text-sm">Suzanne Adler</span>
         </p>
       </div>
 

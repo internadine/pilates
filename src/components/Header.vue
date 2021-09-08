@@ -160,7 +160,7 @@
               <div class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
                 <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
                   <span class="block text-white">Personal Pilates</span>
-                  <span class="block text-blue-200">mit Susanne Adler</span>
+                  <span class="block text-blue-200">mit Suzanne Adler</span>
                 </h1>
                 <p class="mt-6 max-w-lg mx-auto text-center text-xl text-blue-200 sm:max-w-3xl">
                   Vital Coach - Zertifizierte Pilates Trainering - Autorin
@@ -264,7 +264,7 @@ const solutions = [
 const navigation = [
   { name: "Preise", href: "#" },
   { name: "Videos", href: "#" },
-  { name: "Susanne", href: "#" },
+  { name: "Suzanne", href: "#" },
 ];
 
 export default {
