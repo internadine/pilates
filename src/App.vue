@@ -1,26 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <top class="mb-20"></top>
+  <vorteile class="mb-20"></vorteile>
+  <pricing class="mb-20"></pricing>
+  <movie></movie>
+  <footerbar></footerbar>
+
 </template>
 
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import top from "./components/Header.vue";
+import vorteile from "./components/Vorteile.vue";
+import pricing from "./components/Pricing.vue";
+import movie from "./components/Video.vue";
+import footerbar from "./components/Footer.vue";
 
 export default {
-  name: 'App',
+  setup() {},
   components: {
-    HelloWorld
-  }
-}
+    top,
+    vorteile,
+    pricing,
+    footerbar,
+    movie,
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
