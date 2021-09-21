@@ -3,7 +3,8 @@ import Home from '../views/Home.vue'
 import Login from "../views/LoginForm.vue"
 import Signup from "../views/SignupForm.vue"
 import Dashboard from "../views/Dashboard.vue"
-import { projectAuth, projectFirestore } from '../firebase/config'
+import { projectAuth } from '../firebase/config'
+import Payment from "../views/Payment.vue"
 
 // auth guard
 
@@ -38,6 +39,12 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
+    beforeEnter: requireAuth
+  },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: Payment,
     beforeEnter: requireAuth
   },
   

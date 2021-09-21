@@ -58,10 +58,10 @@
             <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
 
               <nav class="mt-5 px-2 space-y-1">
-                <router-link
+                <a
                   v-for="item in navigation"
                   :key="item.name"
-                  :to="item.to"
+                  :href="item.href"
                   :class="[item.current ? 'bg-blue-800 text-white' : 'text-white hover:bg-blue-600 hover:bg-opacity-75', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']"
                 >
                   <component
@@ -70,7 +70,7 @@
                     aria-hidden="true"
                   />
                   {{ item.name }}
-                </router-link>
+                </a>
               </nav>
             </div>
             <div class="flex-shrink-0 flex border-t border-blue-800 p-4">
@@ -116,10 +116,10 @@
           <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
 
             <nav class="mt-5 flex-1 px-2 space-y-1">
-              <router-link
+              <a
                 v-for="item in navigation"
                 :key="item.name"
-                :to="item.to"
+                :href="item.href"
                 :class="[item.current ? 'bg-blue-800 text-white' : 'text-white hover:bg-blue-600 hover:bg-opacity-75', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']"
               >
                 <component
@@ -129,7 +129,7 @@
                 />
                 {{ item.name }}
 
-              </router-link>
+              </a>
 
               <a
                 @click="handleClick"
@@ -188,12 +188,19 @@
       <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none">
         <div class="py-6">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <h1 class="text-2xl font-semibold text-gray-900">Training</h1>
+            <h1 class="text-2xl font-semibold text-gray-900">Guthaben kaufen</h1>
           </div>
           <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <!-- Replace with your content -->
+
             <div class="py-4">
-              <div class="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+
+              <div
+                @click="handleBuy"
+                style="cursor: pointer"
+                class="border-4 border-dashed border-gray-200 rounded-lg h-96"
+              />
+              <p>{{error}}</p>
+
             </div>
             <!-- /End replace -->
           </div>
@@ -205,6 +212,7 @@
 
 <script>
 import { ref } from "vue";
+
 import {
   Dialog,
   DialogOverlay,
@@ -224,19 +232,15 @@ import { watch } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 import getUser from "../composables/getUser";
 import { projectAuth } from "../firebase/config";
+import useCollection from "../composables/useCollection";
 
 const navigation = [
-  {
-    name: "Live Video Training",
-    to: "/dashboard",
-    icon: FilmIcon,
-    current: true,
-  },
+  { name: "Live Video Training", href: "#", icon: FilmIcon, current: false },
   {
     name: "Guthaben kaufen",
-    to: "/payment",
+    href: "#",
     icon: CurrencyEuroIcon,
-    current: false,
+    current: true,
   },
 ];
 
@@ -251,9 +255,29 @@ export default {
   },
   setup() {
     const sidebarOpen = ref(false);
+    const message = ref("");
 
     const { user } = getUser();
     const router = useRouter();
+
+    const { error, addDoc } = useCollection("customers");
+
+    const handleBuy = async () => {
+      const userName = user.value.displayName;
+      const userID = user.value.uid;
+      const customer = {
+        name: userName,
+        package: 5,
+      };
+
+      await addDoc(userID, customer);
+      message.value = "";
+      if (!error.value) {
+        error.value = "";
+      } else {
+        message.value = error.value;
+      }
+    };
 
     watch(user, () => {
       if (!user.value) {
@@ -271,6 +295,8 @@ export default {
       user,
       LogoutIcon,
       handleClick,
+      handleBuy,
+      error,
     };
   },
 };
